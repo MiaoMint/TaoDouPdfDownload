@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         TaoDouPDF
 // @namespace    http://tampermonkey.net/
-// @version      0.1.0
+// @version      0.1.1
 // @description  pdf download
 // @author       MiaoMint
 // @include      https://www.taodocs.com/*
@@ -52,7 +52,8 @@ async function mergeAllPDFs(urls) {
 
     const pdfDoc = await PDFLib.PDFDocument.create();
     const numDocs = urls.length;
-
+    downloadBUtton.innerHTML = "合并文件中..."
+    downloadBUtton1.innerHTML = "合并文件中..."
     for (var i = 0; i < numDocs; i++) {
         const donorPdfBytes = await fetch(urls[i]).then(res => res.arrayBuffer());
         const donorPdfDoc = await PDFLib.PDFDocument.load(donorPdfBytes);
@@ -70,6 +71,9 @@ async function mergeAllPDFs(urls) {
     downloadLink.href = linkSource;
     downloadLink.download = fileName;
     downloadLink.click();
+
+    downloadBUtton.innerHTML = "下载完成"
+    downloadBUtton1.innerHTML = "下载完成"
 }
 
 
