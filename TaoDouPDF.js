@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         TaoDouPDF
 // @namespace    http://tampermonkey.net/
-// @version      0.1.1
+// @version      0.1.2
 // @description  pdf download
 // @author       MiaoMint
 // @include      https://www.taodocs.com/*
@@ -100,7 +100,7 @@ function download() {
         }
         console.log(a)
         if (a.msg == "等待") {
-            taoGetNextPaget()
+            download()
             return
         }
         url = "https:" + EiePQRNA(a.imgs[0], a.s)
