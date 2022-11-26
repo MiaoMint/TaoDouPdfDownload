@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         TaoDouPDF
 // @namespace    http://tampermonkey.net/
-// @version      0.1.2
+// @version      0.1.3
 // @description  pdf download
 // @author       MiaoMint
 // @include      https://www.taodocs.com/*
@@ -79,16 +79,15 @@ async function mergeAllPDFs(urls) {
 
 function download() {
     taoPageCount = pageCount
-    if (taoLoadedPage >= taoPageCount) {
-        getPdfFile()
-        return
-    }
-
     if (!taoPdfs) {
         taoPdfs = urls
     }
     if (!taoNextPageStr) {
         taoNextPageStr = nextPageStr
+    }
+    if (taoLoadedPage >= taoPageCount) {
+        getPdfFile()
+        return
     }
     jQuery.getJSON("//" + ajurl + "/home/IndexTaoDocpdf?from=pc_" + pid + "&trt=" + trt + "&furl=" + taoNextPageStr + "&callback=?", function (a) {
         if (taoPageCount == 0) {
